@@ -2,3 +2,7 @@
     font-size: 25px;
     margin: 0;
 }
+
+.count-title span {
+    font-weight: bold;
+}

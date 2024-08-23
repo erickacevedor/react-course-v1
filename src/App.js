@@ -15,13 +15,49 @@ import './SectionTodo.css';
 library.add(fas);
 
 const defaultTodos = [
-  { text: 'Task 1', completed: true },
-  { text: 'Task 2', completed: false },
-  { text: 'Task 3', completed: false },
-  { text: 'Task 4', completed: true }
+  { id: '1', text: 'Learn react', completed: false },
+  { id: '2', text: 'Have interview', completed: false },
+  { id: '3', text: 'Complete UI design', completed: false },
+  { id: '4', text: 'Water the plants', completed: false },
+  { id: '5', text: 'Read about components', completed: false },
 ];
 
 function App() {
+
+  // Default todo list state 
+  const [tasks, setTasks] = React.useState(defaultTodos);
+
+  // Input search state
+  let [searchValue, setSearchValue] = React.useState("");
+  console.log(`react state: ${searchValue}`);
+
+  // Counting todos 
+  const completedTasks = tasks.filter(key => !!key.completed).length;
+  const totalTodos = tasks.length;
+
+  // Filtered tasks 
+  const filteredTasks = tasks.filter(
+    (key) => {
+      return key.text.toLowerCase().includes(searchValue.toLowerCase())
+    }
+  )
+
+  // Completing tasks 
+  const completeTask = (text) => {
+
+    console.log("Clicked");
+
+    /*
+    const newTasks = [...tasks];
+    const taskIndex = newTasks.findIndex(
+      (task) => task.text === text
+    );
+    newTasks[taskIndex].completed = true;
+    */
+    //setTasks(newTasks);
+
+  }
+
   return (
     <>
 
@@ -34,16 +70,32 @@ function App() {
 
             </aside>
             <section>
-              <TodoCounter completed={5} total={10} />
-              <TodoSearch />
+              <TodoCounter completed={completedTasks} total={totalTodos} />
+              <TodoSearch
+                searchValue={searchValue}
+                setSearchValue={setSearchValue}
+              />
 
               <TodoList>
 
-                {defaultTodos.map(todo => (
+                {filteredTasks.map(todo => (
                   <TodoItem
                     key={todo.text}
                     text={todo.text}
                     completed={todo.completed}
+                    id={todo.id}
+
+                    onComplete={
+                      () => completeTask
+                    }
+
+                  /*
+                  onComplete={
+                    () => completeTodo(todo.text)
+                  }
+                    */
+
+
                   />
                 ))}
 
