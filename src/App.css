@@ -1,0 +1,53 @@
+body {
+  background-color: #f8f8fb;
+}
+
+main {}
+
+main .content {
+  max-width: 980px;
+  width: 100%;
+  margin: 50px auto 0;
+
+  background-color: white;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, .1);
+
+  display: grid;
+  grid-template-columns: 100%;
+  gap: 20px;
+}
+
+main aside {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+main aside h3 {
+  margin: 0;
+}
+
+main aside button {
+  border: 0;
+  background-color: #a5c727;
+  color: black;
+  border-radius: 100px;
+  padding: 15px 30px;
+  font-size: 16px;
+  font-weight: bold;
+
+  cursor: pointer;
+}
+
+main aside h3 {
+  font-size: 25px;
+}
+
+@media (min-width: 992px) {
+  main .content {
+    grid-template-columns: 1fr 1fr;
+  }
+}
